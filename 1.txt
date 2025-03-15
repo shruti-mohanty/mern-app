@@ -1,0 +1,2 @@
+#2b1d0f body color
+#212121 header nav color
