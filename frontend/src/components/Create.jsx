@@ -14,7 +14,7 @@ const Create = () => {
 
     const addUser = { name, email, age };
 
-    const response = await fetch("http://localhost:5000", {
+    const response = await fetch("https://mern-app-6cl5.onrender.com", {
       method: "POST",
       body: JSON.stringify(addUser),
       headers: {
