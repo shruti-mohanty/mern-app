@@ -6,7 +6,12 @@ dotenv.config()
 
 const cors = require("cors");
 
-app.use(cors());
+app.use(cors({
+    origin: "https://mern-app-1-70kp.onrender.com",  
+    methods: ["GET", "POST", "PUT", "DELETE"],       
+    credentials: true,                              
+}));
+
 
 const userRoutes = require("./routes/userRoutes");
 
