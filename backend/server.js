@@ -22,10 +22,11 @@ mongoose
 .then(() => {
     console.log("connected succesfully")
     
-    app.listen(process.env.PORT || 8000 , (err) => {
-        if(err) console.log(err);
-        console.log("running succesfully at", process.env.PORT)
-    })
+  const PORT = process.env.PORT || 8000;  // ✅ Default port set
+app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+});
+
 }).catch((error) => {
     console.log("error",error)
 });
