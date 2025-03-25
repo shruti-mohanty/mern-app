@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-
 dotenv.config();
 
 const cors = require("cors");
@@ -23,5 +22,15 @@ mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: t
     console.log("✅ Connected to MongoDB");
 
     // ✅ Ensure Server Listens on Correct Port
-    const PORT = process.env.PORT || 5000
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("❌ MongoDB connection error:", error);
+  });
+
+// ✅ Use Routes
+app.use(userRoutes);
 
