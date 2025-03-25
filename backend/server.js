@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-dotenv.config()
+
+dotenv.config();
 
 const cors = require("cors");
 
@@ -12,24 +13,15 @@ app.use(cors({
     credentials: true,                              
 }));
 
-
 const userRoutes = require("./routes/userRoutes");
 
 app.use(express.json());
 
-mongoose
-.connect(process.env.URI)
-.then(() => {
-    console.log("connected succesfully")
-    
-  const PORT = process.env.PORT || 8000;  // ✅ Default port set
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-});
+// ✅ Connect to MongoDB
+mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("✅ Connected to MongoDB");
 
-}).catch((error) => {
-    console.log("error",error)
-});
-
-app.use(userRoutes);
+    // ✅ Ensure Server Listens on Correct Port
+    const PORT = process.env.PORT || 5000
 
