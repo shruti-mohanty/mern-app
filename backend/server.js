@@ -2,35 +2,30 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-dotenv.config();
+dotenv.config()
 
 const cors = require("cors");
 
-app.use(cors({
-    origin: "https://mern-app-1-70kp.onrender.com",  
-    methods: ["GET", "POST", "PUT", "DELETE"],       
-    credentials: true,                              
-}));
+app.use(cors());
 
 const userRoutes = require("./routes/userRoutes");
 
 app.use(express.json());
 
-// ✅ Connect to MongoDB
-mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log("✅ Connected to MongoDB");
+mongoose
+.connect(process.env.URI)
+.then(() => {
+    console.log("connected succesfully")
+    
+    app.listen(process.env.PORT || 8000 , (err) => {
+        if(err) console.log(err);
+        console.log("running succesfully at", process.env.PORT)
+    })
+}).catch((error) => {
+    console.log("error",error)
+});
 
-    // ✅ Ensure Server Listens on Correct Port
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.error("❌ MongoDB connection error:", error);
-  });
-
-// ✅ Use Routes
 app.use(userRoutes);
+
+
 
