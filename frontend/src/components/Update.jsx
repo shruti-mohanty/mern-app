@@ -13,7 +13,7 @@ const Update = () => {
   //get single user data
   const getSingleUser = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/${id}`);
+      const response = await fetch(`https://mern-app-6cl5.onrender.com/${id}`);
       const result = await response.json();
 
       if (!response.ok) {
@@ -37,7 +37,7 @@ const Update = () => {
 
     const updatedUser = { name, email, age };
 
-    const response = await fetch(`http://localhost:5000/${id}`, {
+    const response = await fetch(`https://mern-app-6cl5.onrender.com/${id}`, {
       method: "PATCH",
       body: JSON.stringify(updatedUser),
       headers: {
@@ -67,7 +67,7 @@ const Update = () => {
     const updatedUser = { name, email, age };
 
     try {
-      const response = await fetch(`http://localhost:5000/${id}`, {
+      const response = await fetch(`https://mern-app-6cl5.onrender.com/${id}`, {
         method: "PATCH", // Or PUT based on your API
         body: JSON.stringify(updatedUser),
         headers: {
